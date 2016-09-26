@@ -32,24 +32,10 @@
 <script>
 
     function validator (self){
-        var type = self.getAttribute('data-type')
-        switch (type){
-            case 'name':
-                pattern = /[a-zA-Z]/;
-                break;
-            case 'age':
-                pattern = /\d/
-                break;
-            case 'email':
-                pattern = /\w@\w/;
-                break;
-            case 'password':
-                pattern = /\w/;
-                break;
-            case 'tel':
-                pattern = /\d/
-        }
+        var type = self.getAttribute('data-type');
+        var pattern = new RegExp(type)
         if(pattern.test(self.value) ){
+
             self.className = 'correct'
         }else {
             self.className = 'incorrect'
@@ -59,11 +45,11 @@
 </script>
 <form>
 <div>
-<input oninput="validator(this)" type="text" data-type="name" placeholder="enter your name">
-<input oninput="validator(this)" type="text" data-type="age" placeholder="enter your age">
-<input oninput="validator(this)" type="email" data-type="email" placeholder="email">
-<input oninput="validator(this)" type="password" data-type="password" placeholder="password">
-<input oninput="validator(this)" type="tel" data-type="tel" placeholder="phone">
+<input oninput="validator(this)" type="text" data-type="[a-zA-Z]" placeholder="enter your name">
+<input oninput="validator(this)" type="text" data-type="\d" placeholder="enter your age">
+<input oninput="validator(this)" type="email" data-type="\w@\w" placeholder="email">
+<input oninput="validator(this)" type="password" data-type="\w" placeholder="password">
+<input oninput="validator(this)" type="tel" data-type="\d" placeholder="phone">
 </div>
 </form>
 </body>
