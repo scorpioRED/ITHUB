@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+</head>
+<body>
+
+<ul id="myList">
+    <li>first el</li>
+    <li>second el</li>
+    <li>third el</li>
+    <li>fourth el</li>
+</ul>
+<button onclick="selectFirst()">select first el</button>
+<button onclick="selectLast()" >select last el</button>
+<button onclick="selectNext()">select next el</button>
+<button onclick="selectPrevious()">select previous el</button>
+<button onclick="addElement()">add el</button>
+<button onclick="removeElement()" >remove el</button>
+<button onclick="addElement(true)">add on top</button>
+
+<!--</form>-->
+
+<script>
+
+    let currentSelec;
+    let customElements = [];
+
+    let selectFirst = ()=>{
+        currentSelec = document.getElementById("myList").firstElementChild;
+        markElement(currentSelec)
+    }
+   let selectLast = ()=>{
+        currentSelec = document.getElementById("myList").lastElementChild;
+        markElement(currentSelec)
+    }
+    let selectNext = () =>{
+        currentSelec.removeAttribute("style")
+        if(currentSelec.nextElementSibling != null){
+            currentSelec = currentSelec.nextElementSibling;
+            markElement(currentSelec)
+        }else {
+            currentSelec = document.getElementById("myList").firstElementChild
+            markElement(currentSelec)
+        }
+    }
+
+    let selectPrevious = ()=>{
+        currentSelec.removeAttribute("style")
+        if(currentSelec.previousElementSibling != null){
+            currentSelec = currentSelec.previousElementSibling;
+            markElement(currentSelec)
+        }else {
+            currentSelec = document.getElementById("myList").lastElementChild
+            markElement(currentSelec)
+        }
+    }
+
+    let markElement = (el) => {
+        el.setAttribute("style","color : red")
+    }
+
+
+    let addElement = (onTop = false) => {
+        let newItem = document.createElement('li');
+        newItem.innerHTML = `${customElements.length+1} new element created by user `;
+        customElements.push(newItem)
+        if(onTop){
+            myList.insertBefore(newItem,myList.firstElementChild)
+        }else {
+            myList.appendChild(newItem,myList.firstElementChild)
+        }
+
+
+    }
+
+    let removeElement = ()=>{
+        myList.removeChild(customElements[customElements.length-1])
+        customElements.splice(customElements.length-1,1)
+
+    }
+
+
+</script>
+</body>
+</html>

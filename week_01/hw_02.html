@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW 02</title>
+    <style>
+        div {
+            height: 250px;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        div input {
+            margin: 10px;
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid #2895c4;
+        }
+
+        .incorrect {
+            border: 4px solid #c4351c;
+        }
+
+        .correct {
+            border: 3px solid #30c454;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+    function validator (self){
+        var type = self.getAttribute('data-type')
+        switch (type){
+            case 'name':
+                pattern = /[a-zA-Z]/;
+                break;
+            case 'age':
+                pattern = /\d/
+                break;
+            case 'email':
+                pattern = /\w@\w/;
+                break;
+            case 'password':
+                pattern = /\w/;
+                break;
+            case 'tel':
+                pattern = /\d/
+        }
+        if(pattern.test(self.value) ){
+            self.className = 'correct'
+        }else {
+            self.className = 'incorrect'
+        }
+    }
+
+</script>
+<form>
+<div>
+<input oninput="validator(this)" type="text" data-type="name" placeholder="enter your name">
+<input oninput="validator(this)" type="text" data-type="age" placeholder="enter your age">
+<input oninput="validator(this)" type="email" data-type="email" placeholder="email">
+<input oninput="validator(this)" type="password" data-type="password" placeholder="password">
+<input oninput="validator(this)" type="tel" data-type="tel" placeholder="phone">
+</div>
+</form>
+</body>
+</html>
